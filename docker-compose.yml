@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+  #  networks:
+  #    - mynetwork
+#
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_USER=erneypuetate
+      - POSTGRES_PASSWORD=Adolfo2008
+      - POSTGRES_DB=erney
+ #   networks:
+ #     - mynetwork
+#
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=erney@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=Adolfo2008
+    ports:
+      - "80:80"
+    depends_on:
+      - postgres
+
+#networks:
+#  mynetwork:
+#    driver: bridge
